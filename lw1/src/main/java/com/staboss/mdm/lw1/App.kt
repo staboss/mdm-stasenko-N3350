@@ -33,7 +33,7 @@ fun main() {
     }
 
     var (kIn, kOut) = Pair(-1, -1)  // (0, 2)
-    var (nSms, kSms) = Pair(-1, -1) // (10, 0)
+    var (nSms, kSms) = Pair(-1, -1) // (10, 1)
 
     kIn = rwInt("Входящие звонки (руб/мин)", kIn)
     kOut = rwInt("Исходящие звонки (руб/мин)", kOut)
