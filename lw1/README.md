@@ -16,4 +16,5 @@
 - запускаем исполняемый `.jar-файл` как было показано выше
 
 ### Пример работы приложения:
-![Example CDR](https://github.com/staboss/mdm-stasenko-N3350/tree/master/lw1/src/main/resources/example-lw1.png)
+
+![Example CDR](https://github.com/staboss/mdm-stasenko-N3350/blob/master/lw1/src/main/resources/example-lw1.png)
