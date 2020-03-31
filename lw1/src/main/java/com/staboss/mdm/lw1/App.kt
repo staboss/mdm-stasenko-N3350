@@ -32,18 +32,18 @@ fun main() {
         }
     }
 
-    var (kIn, kOut) = Pair(-1, -1)  // (0, 2)
-    var (nSms, kSms) = Pair(-1, -1) // (10, 1)
+    var (kIn, kOut) = Pair(-1, -1)  // (0, 1)
+    var (nMin, kSms) = Pair(-1, -1) // (10, 5)
 
     kIn = rwInt("Входящие звонки (руб/мин)", kIn)
     kOut = rwInt("Исходящие звонки (руб/мин)", kOut)
 
-    nSms = rwInt("Количество бесплатных СМС", nSms)
+    nMin = rwInt("Количество бесплатных минут", nMin)
     kSms = rwInt("Стоимость отправки одного СМС", kSms)
 
     println()
 
-    val userTariff = UserTariff(phone, kOut, kIn, kSms, nSms)
+    val userTariff = UserTariff(phone, kOut, kIn, kSms, nMin)
     val data: List<CDRData> = utils.reader.readData(file).filter { cdrData ->
         cdrData.msisdn_origin.number == userTariff.userPhoneNum || cdrData.msisdn_dest.number == userTariff.userPhoneNum
     }
