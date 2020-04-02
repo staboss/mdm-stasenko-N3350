@@ -57,8 +57,8 @@ fun main() {
     val tariffCalls = userTariff.calculateCalls(data)
 
     println("Тарификации абонента ${userTariff.userPhoneNum}:" +
-            "\n- тарификации услуг \"Телефония\" = $tariffCalls руб." +
-            "\n- тарификации услуг \"СМС\" = $tariffSms руб."
+            "\n- тарификация услуг \"Телефония\" = $tariffCalls руб." +
+            "\n- тарификация услуг \"СМС\" = $tariffSms руб."
     )
 }
 

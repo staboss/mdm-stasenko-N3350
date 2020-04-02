@@ -15,10 +15,6 @@ data class UserTariff(
         var smsPrice = 0F
         cdrData.forEach { session ->
             if (session.msisdn_origin.number == userPhoneNum) {
-//                var smsNumber = session.sms_number
-//                if (freeMinutes != null && freeMinutes > 0) {
-//                    smsNumber -= freeMinutes
-//                }
                 val sms = SMS(session.sms_number)
                 val price = sms.calculate(smsCostPrice)
                 smsPrice += price
