@@ -16,7 +16,7 @@ data class NetFlowData(
 
 data class NetTime(private val time: String) {
     val timestamp: Date
-        get() = SimpleDateFormat("yyyy-mm-dd hh:mm:ss.S").parse(time)
+        get() = SimpleDateFormat("yyyy-MM-dd hh:mm:ss.S").parse(time)
     val stringFormat: String
         get() = SimpleDateFormat("hh:mm:ss.S").format(timestamp)
 }

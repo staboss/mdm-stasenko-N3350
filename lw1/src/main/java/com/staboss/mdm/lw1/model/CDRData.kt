@@ -15,5 +15,5 @@ data class MobileNumber(val number: String)
 
 data class CallTime(private val time: String) {
     val timestamp: Date
-        get() = SimpleDateFormat("yyyy-mm-dd hh:mm:ss").parse(time)
+        get() = SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(time)
 }
