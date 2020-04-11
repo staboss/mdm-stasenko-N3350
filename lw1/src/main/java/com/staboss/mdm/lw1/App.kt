@@ -48,9 +48,7 @@ fun main() {
     println()
 
     val userTariff = UserTariff(userPhoneNum, outgoingCall, incomingCall, smsCostPrice, freeMinutes)
-    val data: List<CDRData> = utils.reader.readData(file).filter { cdrData ->
-        cdrData.msisdn_origin.number == userTariff.userPhoneNum || cdrData.msisdn_dest.number == userTariff.userPhoneNum
-    }
+    val data: List<CDRData> = utils.reader.readData(file)
 
     if (data.isEmpty()) {
         println("Абонент с номером $userPhoneNum не найден.")
