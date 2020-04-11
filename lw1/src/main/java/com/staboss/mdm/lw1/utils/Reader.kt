@@ -17,8 +17,11 @@ class Reader {
                 val callTime = CallTime(lineData[0])
                 val msisdnOrigin = MobileNumber(lineData[1])
                 val msisdnDest = MobileNumber(lineData[2])
-                val callDuration = lineData[3].toDouble()
-                val smsNumber = lineData[4].toInt()
+                val callDuration = lineData[3].toDoubleOrNull()
+                val smsNumber = lineData[4].toIntOrNull()
+
+                if (callDuration == null) throw Exception("File has unsupported 'call duration' format")
+                if (smsNumber == null) throw Exception("File has unsupported 'sms number' format")
 
                 val cdrUser = CDRData(callTime, msisdnOrigin, msisdnDest, callDuration, smsNumber)
                 resultCDRData.add(cdrUser)
