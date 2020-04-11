@@ -9,7 +9,7 @@ class Reader {
     fun readData(file: File): List<CDRData> {
         val resultCDRData = mutableListOf<CDRData>()
         val fileData = file.readLines()
-        fileData.forEachIndexed() { index, line ->
+        fileData.forEachIndexed { index, line ->
             if (index != 0) {
                 val lineData = line.split(",")
                 if (lineData.size != 5) throw Exception("File has unsupported number of values (> 5)")
