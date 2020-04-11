@@ -6,10 +6,15 @@ import com.staboss.mdm.lw2.utils.Utils
 import java.io.File
 
 val utils = Utils()
-
+/*
+- Путь до файла с трафиком NetFlow = src/main/resources/data.csv
+- IP-адресс = 192.168.250.39
+- Тариф = 0.5
+- Количество бесплатных килобайт = 1000
+*/
 fun main() {
     println("Введите путь до файла с трафиком NetFlow формата .csv:")
-    val path = utils.scanner.nextLine() // src/main/resources/data.csv
+    val path = utils.scanner.nextLine()
     val file = File(path)
 
     if (!file.exists()) {
@@ -17,9 +22,11 @@ fun main() {
         return
     }
 
+    utils.reader.plotFilePath = file.absolutePath.substring(0, file.absolutePath.lastIndexOf('/')) + "/plot.csv"
+
     println("\nВведите данные абонента для тарификации")
 
-    var ipAddress: String   // 192.168.250.39
+    var ipAddress: String
     while (true) {
         try {
             print("IP-адресс: ")
@@ -32,24 +39,22 @@ fun main() {
         }
     }
 
-    var (k, freeKilobytes) = Pair(-1F, -1F) // (0.5, 1000)
-
-    k = rwFloat("Тариф (Кб/руб)", k)
-    freeKilobytes = rwFloat("Количество бесплатных килобайт", freeKilobytes)
+    val k = getNumber("Тариф (Кб/руб)")
+    val freeKilobytes = getNumber("Количество бесплатных килобайт")
 
     println()
 
     val user = UserTariff(ipAddress, k, freeKilobytes)
-    val data = utils.reader.readData(file).filter { it.srcIPAddr.contains(user.ipAddress) }
+    val data = utils.reader.readData(file)
     Plot.parseDataPlot(data.sortedBy { it.dateFirstSeen.timestamp })
 
-    val totalPrice = user.calculateInternet(data)
+    val totalPrice = String.format("%.2f", user.calculateInternet(data)).replace(",", ".")
     println("Тарификации абонента ${user.ipAddress}:" +
             "\n- тарификация услуг \"Интернет\" = $totalPrice руб.")
 }
 
-fun rwFloat(title: String, field: Float): Float {
-    while (field == -1F) {
+fun getNumber(title: String): Float {
+    while (true) {
         try {
             print("$title: ")
             val tmp = utils.scanner.nextLine().toFloat()
@@ -59,5 +64,4 @@ fun rwFloat(title: String, field: Float): Float {
             println("Ошибка ввода, проверьте корректность введенных данных.")
         }
     }
-    return 0F
 }
