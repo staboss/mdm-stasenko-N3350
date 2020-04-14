@@ -17,5 +17,5 @@
 ### Пример работы приложения:
 ![Example NetFlow](https://github.com/staboss/mdm-stasenko-N3350/blob/master/lw2/src/main/resources/example.png)
 
-### График зависимости объема трафика от времени
+### График зависимости объема трафика от времени:
 ![Plot](https://github.com/staboss/mdm-stasenko-N3350/blob/master/lw2/src/main/resources/plot.png)
